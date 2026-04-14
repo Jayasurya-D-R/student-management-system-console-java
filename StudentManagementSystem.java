@@ -23,6 +23,9 @@ class Main{
             System.out.println("Press 2:To View Students");
             System.out.println("Press 3:Find Topper");
             System.out.println("Press 4:To Exit");
+            System.out.println("Press 5:To Search a Student");
+            System.out.println("Press 6:To Delete Student");
+            System.out.println("Press 7:To Update marks");
             int choice=scan.nextInt();
             scan.nextLine();
             if(choice==1){
@@ -59,6 +62,55 @@ class Main{
             }
             else if(choice==4){
                 add=false;
+            }
+            else if(choice==5){
+                boolean checker=false;
+                System.out.println("Enter the name of the Student:");
+                String check=scan.nextLine();
+                for(int i=0;i<list.size();i++){
+                    if(check.equals(list.get(i).name)) {
+                        System.out.println("Student found Successfully");
+                        list.get(i).display();
+                        checker=true;
+                    }
+                }
+                if(!checker){
+                    System.out.println("No student found");
+                }
+            }
+            else if(choice==6){
+                boolean checker=false;
+                System.out.println("Enter the name of the Student:");
+                String check=scan.nextLine();
+                for(int i=0;i<list.size();i++){
+                    if(check.equals(list.get(i).name)){
+                        list.remove(i);
+                        System.out.println("Student deleted successfully");
+                        checker=true;
+                        break;
+                    }
+                }
+                if(!checker){
+                    System.out.println("No student found");
+                }
+            }
+            else if(choice==7){
+                boolean checker=false;
+                System.out.println("Enter the name of the Student:");
+                String check=scan.nextLine();
+                for(int i=0;i< list.size();i++){
+                    if(check.equals(list.get(i).name)) {
+                        System.out.println("Enter the new marks");
+                        int newmarks=scan.nextInt();
+                        list.get(i).marks=newmarks;
+                        System.out.println("Success");
+                        checker=true;
+                        break;
+                    }
+                }
+                if(!checker){
+                    System.out.println("No student found");
+                }
             }
             else{
                 System.out.println("Invalid command only give input 1 or 2 or 3 or 4");

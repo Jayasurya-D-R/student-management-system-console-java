@@ -7,8 +7,16 @@
 - Update Marks
 
 ## Concepts Used
-- OOP (Classes & Objects)
-- ArrayList (Dynamic Storage)
+- Object-Oriented Programming (OOP)
+- ArrayList (Dynamic Data Storage)
 - CRUD Operations
-- Scanner (User Input)
-- Input Buffer Handling (nextInt + nextLine)
+- Method Separation (Clean Code)
+- Scanner (User Input Handling)
+
+## How to Run
+
+1. Compile:
+   javac Main.java
+
+2. Run:
+   java Main

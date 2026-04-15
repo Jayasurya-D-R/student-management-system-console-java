@@ -1,5 +1,9 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.*;
 
 class Student{
     String name;
@@ -97,10 +101,39 @@ class Main{
             System.out.println("No student found");
         }
     }
+    static void loadFromFile(ArrayList<Student> list){
+        try {
+            BufferedReader br = new BufferedReader(new FileReader("D:\\java projects\\Welcome\\src\\students.txt"));
+            String line;
+            while((line=br.readLine())!=null){
+                String[] data=line.split(",");
+                String name=data[0];
+                int marks=Integer.parseInt(data[1]);
+                list.add(new Student(name,marks));
+            }
+            br.close();
+        }
+        catch(Exception e){
+            System.out.println("Error reading file");
+        }
+    }
+    static void saveToFile(ArrayList<Student> list){
+        try{
+            FileWriter fw=new FileWriter("Your path");
+            for(int i=0;i<list.size();i++){
+                fw.write(list.get(i).name+","+list.get(i).marks+"\n");
+            }
+            fw.close();
+        }
+        catch(Exception e){
+            System.out.println("Error saving file");
+        }
+    }
     public static void main(String[] args) {
         ArrayList<Student> list=new ArrayList<>();
         Scanner scan=new Scanner(System.in);
         boolean add=true;
+        loadFromFile(list);
         while(add){
             System.out.println("------------MENU----------------");
             System.out.println("Press 1:To Add Student");
@@ -114,6 +147,7 @@ class Main{
             scan.nextLine();
             if(choice==1){
                 addStudent(list,scan);
+                saveToFile(list);
             }
             else if(choice==2){
                 viewStudents(list);
@@ -129,9 +163,11 @@ class Main{
             }
             else if(choice==6){
                 deleteStudent(list,scan);
+                saveToFile(list);
             }
             else if(choice==7){
                 updateMarks(list,scan);
+                saveToFile(list);
             }
             else{
                 System.out.println("Invalid command only give input 1 or 2 or 3 or 4");
